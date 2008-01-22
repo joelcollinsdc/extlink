@@ -1,30 +1,32 @@
 <?php
 // $Id$
 
-function extlink_menu($may_cache) {
+function extlink_menu() {
   $items = array();
-  if ($may_cache) {
-    $items[] = array(
-      'path' => 'admin/settings/extlink',
-      'title' => t('External links'),
-      'description' => t('Alter the display of external links on the site.'),
-      'callback' => 'drupal_get_form',
-      'callback arguments' => array('extlink_admin_settings'),
-      'access' => user_access('administer site configuration')
-    );
-  }
-  else {
-    $path = drupal_get_path('module', 'extlink');
-    drupal_add_js($path. '/extlink.js');
-    drupal_add_js(array('extlink' => array('extTarget' => variable_get('extlink_target', 0), 'extClass' => variable_get('extlink_class', 'ext'), 'baseUri' => 'http://' . $_SERVER['HTTP_HOST'])), 'setting');
-    if (variable_get('extlink_class', 'ext')) {
-      drupal_add_css($path. '/extlink.css');
-    }
-  }
+  $items['admin/settings/extlink'] = array(
+    'title' => t('External links'),
+    'description' => t('Alter the display of external links on the site.'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('extlink_admin_settings'),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer site configuration'),
+  );
   return $items;
 }
 
-function extlink_admin_settings () {
+/**
+ * Implementation of hook_init().
+ */
+function extlink_init() {
+  $path = drupal_get_path('module', 'extlink');
+  drupal_add_js($path .'/extlink.js');
+  drupal_add_js(array('extlink' => array('extTarget' => variable_get('extlink_target', 0), 'extClass' => variable_get('extlink_class', 'ext'), 'extSubdomains' => variable_get('extlink_subdomains', 1))), 'setting');
+  if (variable_get('extlink_class', 'ext')) {
+    drupal_add_css($path .'/extlink.css');
+  }
+}
+
+function extlink_admin_settings() {
   $form = array();
 
   $form['extlink_class'] = array(
@@ -32,7 +34,14 @@ function extlink_admin_settings () {
     '#title' => t('Add icon to external links'),
     '#return_value' => 'ext',
     '#default_value' => variable_get('extlink_class', 'ext'),
-    '#description' => t('Places an !icon icon next to external links.', array('!icon' => theme_image(drupal_get_path('module', 'extlink') . '/extlink.png'))),
+    '#description' => t('Places an !icon icon next to external links.', array('!icon' => theme_image(drupal_get_path('module', 'extlink') .'/extlink.png'))),
+  );
+
+  $form['extlink_subdomains'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Consider subdomains internal'),
+    '#default_value' => variable_get('extlink_subdomains', 1),
+    '#description' => t('If checked, links with the same primary domain will all be considered internal. A link from www.example.com to my.example.com would be considered internal. Links between the www. and non-www. domain are always considered internal.'),
   );
 
   $form['extlink_target'] = array(
