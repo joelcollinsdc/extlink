@@ -20,8 +20,8 @@ function extlink_menu() {
 function extlink_init() {
   $path = drupal_get_path('module', 'extlink');
   drupal_add_js($path .'/extlink.js');
-  drupal_add_js(array('extlink' => array('extTarget' => variable_get('extlink_target', 0), 'extClass' => variable_get('extlink_class', 'ext'), 'extSubdomains' => variable_get('extlink_subdomains', 1))), 'setting');
-  if (variable_get('extlink_class', 'ext')) {
+  drupal_add_js(array('extlink' => array('extTarget' => variable_get('extlink_target', 0), 'extClass' => variable_get('extlink_class', 'ext'), 'extSubdomains' => variable_get('extlink_subdomains', 1), 'mailtoClass' => variable_get('extlink_mailto_class', 'mailto'))), 'setting');
+  if (variable_get('extlink_class', 'ext') == 'ext' || variable_get('extlink_mailto_class', 'mailto') == 'mailto') {
     drupal_add_css($path .'/extlink.css');
   }
 }
@@ -35,6 +35,14 @@ function extlink_admin_settings() {
     '#return_value' => 'ext',
     '#default_value' => variable_get('extlink_class', 'ext'),
     '#description' => t('Places an !icon icon next to external links.', array('!icon' => theme_image(drupal_get_path('module', 'extlink') .'/extlink.png'))),
+  );
+
+  $form['extlink_mailto_class'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Add icon to mailto links'),
+    '#return_value' => 'mailto',
+    '#default_value' => variable_get('extlink_mailto_class', 'mailto'),
+    '#description' => t('Places an !icon icon next to external links.', array('!icon' => theme_image(drupal_get_path('module', 'extlink') .'/mailto.png'))),
   );
 
   $form['extlink_subdomains'] = array(

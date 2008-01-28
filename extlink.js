@@ -25,11 +25,15 @@ if (Drupal.jsEnabled) {
     // In jQuery 1.1 and higher, we'd us a filter method here, but it is not
     // available in jQuery 1.0 (Drupal 5 default).
     var external_links = new Array();
+    var mailto_links = new Array();
     $("a").each(function(el) {
       try {
         var url = this.href.toLowerCase();
         if (url.indexOf('http') == 0 && !url.match(internal_link)) {
           external_links.push(this);
+        }
+        else if (url.indexOf('mailto:') == 0) {
+          mailto_links.push(this);
         }
       }
       // IE7 throws errors often when dealing with irregular links, such as:
@@ -40,16 +44,19 @@ if (Drupal.jsEnabled) {
       }
     });
 
-    $links = $(external_links);
-
     if (Drupal.settings.extlink.extClass) {
       // Apply the "ext" class to all links not containing images.
-      $links.not($links.find('img').parents('a')).addClass(Drupal.settings.extlink.extClass);
+      $(external_links).not($(external_links).find('img').parents('a')).addClass(Drupal.settings.extlink.extClass);
+    }
+
+    if (Drupal.settings.extlink.mailtoClass) {
+      // Apply the "mailto" class to all mailto links not containing images.
+      $(mailto_links).not($(mailto_links).find('img').parents('a')).addClass(Drupal.settings.extlink.mailtoClass);
     }
 
     if (Drupal.settings.extlink.extTarget) {
       // Apply the target attribute to all links.
-      $links.attr('target', Drupal.settings.extlink.extTarget);
+      $(external_links).attr('target', Drupal.settings.extlink.extTarget);
     }
   });
 }
