@@ -46,12 +46,22 @@ if (Drupal.jsEnabled) {
 
     if (Drupal.settings.extlink.extClass) {
       // Apply the "ext" class to all links not containing images.
-      $(external_links).not($(external_links).find('img').parents('a')).addClass(Drupal.settings.extlink.extClass);
+      if (parseFloat($().jquery) < 1.2) {
+        $(external_links).not('[img]').addClass(Drupal.settings.extlink.extClass);
+      }
+      else {
+        $(external_links).not($(external_links).find('img').parents('a')).addClass(Drupal.settings.extlink.extClass);
+      }
     }
 
     if (Drupal.settings.extlink.mailtoClass) {
       // Apply the "mailto" class to all mailto links not containing images.
-      $(mailto_links).not($(mailto_links).find('img').parents('a')).addClass(Drupal.settings.extlink.mailtoClass);
+      if (parseFloat($().jquery) < 1.2) {
+        $(mailto_links).not('[img]').addClass(Drupal.settings.extlink.mailtoClass);
+      }
+      else {
+        $(mailto_links).not($(mailto_links).find('img').parents('a')).addClass(Drupal.settings.extlink.mailtoClass);
+      }
     }
 
     if (Drupal.settings.extlink.extTarget) {
