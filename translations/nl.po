@@ -48,7 +48,7 @@ msgstr "Open externe links in een nieuw venster"
 
 #: extlink.module:60
 msgid "Should all external links be opened in a new window?"
-msgstr "Moeten alle externe links in een nieuw ve"
+msgstr "Moeten alle externe links in een nieuw venster geopend worden?"
 
 #: extlink.module:0
 msgid "extlink"
