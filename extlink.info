@@ -2,4 +2,5 @@
 name = External Links
 description = Adds icon next to external links on the site.
 package = User interface
-core = 6.x
+core = 7.x
+files[] = extlink.module

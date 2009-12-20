@@ -1,4 +1,4 @@
-# $Id$
+# $Id: ja.po,v 1.2 2008/01/22 02:34:34 quicksketch Exp $
 # -----------------------------------------------------------------------------
 # Japanese translation of Drupal (extlink.module)
 #
@@ -14,52 +14,48 @@
 msgid ""
 msgstr ""
 "POT-Creation-Date: 2007-05-06 23:09+0900\n"
-"Last-Translator: Dimitris Kounalakis <dcoun@medsite.info>\n"
-"Language-Team: Dimitris Kounalakis <dcoun@medsite.info>\n"
+"Last-Translator: Takafumi <jp.drupal@imagine **reverse order**>\n"
+"Language-Team: Drupal Japan / Drupal Nippon\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"Project-Id-Version: extlink greek translation 1.0\n"
-"PO-Revision-Date: 2008-03-19 12:48+0200\n"
-"X-Poedit-Language: Greek\n"
-"X-Poedit-Country: GREECE\n"
 
 #: extlink.module:9
 msgid "External links"
-msgstr "Εξωτερικοί σύνδεσμοι"
+msgstr "エクスターナルリンク"
 
 #: extlink.module:10
 msgid "Alter the display of external links on the site."
-msgstr "Τροποποιεί την εμφάνιση εξωτερικών συνδέσμων στον ιστότοπο."
+msgstr "サイト上の外部リンクの表示を変更します。"
 
 #: extlink.module:32
 msgid "Add icon to external links"
-msgstr "Προσθήκη εικονιδίου σε εξωτερικούς συνδέσμους"
+msgstr "外部リンクにアイコンを追加"
 
 #: extlink.module:35
 msgid "Places an !icon icon next to external links."
-msgstr "Τοποθετεί ένα εικονίδιο !icon δίπλα σε εξωτερικούς συνδέσμους."
+msgstr "アイコン（!icon）を外部リンクの隣に表示するかどうかを指定してください。"
 
 #: extlink.module:40
 msgid "Open external links in a new window"
-msgstr "Ανοίγει εξωτερικούς συνδέσμους σε ένα νέο παράθυρο"
+msgstr "外部リンクを新しいウィンドウで開く"
 
 #: extlink.module:43
 msgid "Should all external links be opened in a new window?"
-msgstr "Πρέπει όλοι οι εξωτερικοί σύνδεσμοι να ανοίγουν σε ένα νέο παράθυρο;"
+msgstr "すべての外部リンクを新しいウィンドウで開くようにするかどうかを指定してください。"
 
 #: extlink.info:0
 msgid "External Links"
-msgstr "Εξωτερικοί Σύνδεσμοι"
+msgstr "エクスターナルリンク"
 
 #: extlink.info:0
 msgid "Adds icon next to external links on the site."
-msgstr "Προσθέτει ένα εικονίδιο δίπλα σε εξωτερικούς συνδέσμους στον ιστότοπο."
+msgstr "サイト上の外部リンクの隣にアイコンを加えます。"
 
 #: extlink.info:0
 msgid "User interface"
-msgstr "Περιβάλλον εργασίας"
+msgstr "ユーザインターフェース"
 
 #: extlink.info:0
 msgid "extlink"

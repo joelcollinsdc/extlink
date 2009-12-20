@@ -1,57 +1,54 @@
+# $Id$
+# -----------------------------------------------------------------------------
+# Japanese translation of Drupal (extlink.module)
+#
+# Copyright (c) 2006-2007  Drupal Japan  ( http://drupal.jp/ )  /
+#                          Drupal Nippon ( http://drupon.org/ ) /
+#                          Takafumi      ( jp.drupal@imagine **reverse order**)
+#
+# Generated from file:
+#  extlink.module,v 1.1 2007/03/29 00:31:55 quicksketch
+#  extlink.info,v 1.1 2007/03/29 00:31:55 quicksketch
+#
+# -----------------------------------------------------------------------------
 msgid ""
 msgstr ""
-"Project-Id-Version: German translation of External Links module\n"
-"POT-Creation-Date: 2008-02-23 00:25-0800\n"
-"PO-Revision-Date: 2008-03-30 15:26+0100\n"
-"Last-Translator: BENNYSOFT <bennysoft@gmx.net>\n"
-"Language-Team: German <translations@drupal.org>\n"
+"POT-Creation-Date: 2007-05-06 23:09+0900\n"
+"Last-Translator: Mario Perabo <mario@einfach-trainieren.de>\n"
+"Language-Team: Einfach-Trainieren.de <mario@einfach-trainieren.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: \n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: extlink.module:7
+#: extlink.module:9
 msgid "External links"
 msgstr "Externe Links"
 
-#: extlink.module:8
+#: extlink.module:10
 msgid "Alter the display of external links on the site."
-msgstr "Ändert die Anzeige von externen Links auf der Website."
+msgstr "Darstellung externer Links auf der Site ändern."
 
-#: extlink.module:34
+#: extlink.module:32
 msgid "Add icon to external links"
 msgstr "Icon zu externen Links hinzufügen"
 
-#: extlink.module:37;45
+#: extlink.module:35
 msgid "Places an !icon icon next to external links."
-msgstr "Zeigt ein !icon-Icon neben externen Links an."
+msgstr "Plaziert dieses !icon Icon neben den externen Links."
 
-#: extlink.module:42
-msgid "Add icon to mailto links"
-msgstr "Icon zu mailto-Links hinzufügen"
-
-#: extlink.module:50
-msgid "Consider subdomains internal"
-msgstr "Subdomains als intern betrachten"
-
-#: extlink.module:52
-msgid "If checked, links with the same primary domain will all be considered internal. A link from www.example.com to my.example.com would be considered internal. Links between the www. and non-www. domain are always considered internal."
-msgstr "Wenn aktiviert, werden alle Links mit derselben Domain als intern betrachtet. Ein Link von www.example.com zu my.example.com würde als intern betrachtet. Links zwischen der Domain mit www. und ohne www. werden immer als intern betrachtet."
-
-#: extlink.module:57
+#: extlink.module:40
 msgid "Open external links in a new window"
-msgstr "Externe Links in einem neuen Fenster öffnen"
+msgstr "Externe Links in neuem Fenster öffnen"
 
-#: extlink.module:60
+#: extlink.module:43
 msgid "Should all external links be opened in a new window?"
-msgstr "Sollen alle externen Links in einem neuen Fenster geöffnet werden?"
-
-#: extlink.module:0
-msgid "extlink"
-msgstr "extlink"
+msgstr "Sollten alle externen Links in einem neuen Fenster geöffnet werden?"
 
 #: extlink.info:0
 msgid "External Links"
@@ -59,9 +56,13 @@ msgstr "Externe Links"
 
 #: extlink.info:0
 msgid "Adds icon next to external links on the site."
-msgstr "Fügt ein Icon neben externen Links auf der Website hinzu."
+msgstr "Fügt ein Icon neben dem externen Link auf der Site hinzu."
 
 #: extlink.info:0
 msgid "User interface"
 msgstr "Benutzeroberfläche"
+
+#: extlink.info:0
+msgid "extlink"
+msgstr "extlink"
 
