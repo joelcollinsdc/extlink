@@ -2,9 +2,10 @@
 (function ($) {
 
 function extlinkAttach(context) {
-  // Strip the host name down, removing subdomains or www.
-  var host = window.location.host.replace(/^(([^\/]+?\.)*)([^\.]{4,})((\.[a-z]{1,4})*)$/, '$3$4');
-  var subdomain = window.location.host.replace(/^(([^\/]+?\.)*)([^\.]{4,})((\.[a-z]{1,4})*)$/, '$1');
+  // Strip the host name down, removing ports, subdomains, or www.
+  var pattern = /^(([^\/:]+?\.)*)([^\.:]{4,})((\.[a-z]{1,4})*)(:[0-9]{1,5})?$/;
+  var host = window.location.host.replace(pattern, '$3$4');
+  var subdomain = window.location.host.replace(pattern, '$1');
 
   // Determine what subdomains are considered internal.
   if (Drupal.settings.extlink.extSubdomains) {
