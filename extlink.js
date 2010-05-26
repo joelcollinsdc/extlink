@@ -92,7 +92,7 @@ function extlinkAttach(context) {
   }
 
   // Work around for Internet Explorer box model problems.
-  if (($.support && !$.support.boxModel) || ($.browser.msie && parseInt($.browser.version) <= 7)) {
+  if (($.support && !($.support.boxModel === undefined) && !$.support.boxModel) || ($.browser.msie && parseInt($.browser.version) <= 7)) {
     $('span.ext, span.mailto').css('display', 'inline-block');
   }
 }
