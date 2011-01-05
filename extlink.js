@@ -41,13 +41,15 @@ function extlinkAttach(context) {
   // available in jQuery 1.0 (Drupal 5 default).
   var external_links = new Array();
   var mailto_links = new Array();
-  $("a:not(." + Drupal.settings.extlink.extClass + ", ." + Drupal.settings.extlink.mailtoClass + ")", context).each(function(el) {
+  $("a:not(." + Drupal.settings.extlink.extClass + ", ." + Drupal.settings.extlink.mailtoClass + "), area:not(." + Drupal.settings.extlink.extClass + ", ." + Drupal.settings.extlink.mailtoClass + ")", context).each(function(el) {
     try {
       var url = this.href.toLowerCase();
       if (url.indexOf('http') == 0 && (!url.match(internal_link) || (extInclude && url.match(extInclude))) && !(extExclude && url.match(extExclude))) {
         external_links.push(this);
       }
-      else if (url.indexOf('mailto:') == 0) {
+      // Do not include area tags with begin with mailto: (this prohibits
+      // icons from being added to image-maps).
+      else if (this.tagName != 'AREA' && url.indexOf('mailto:') == 0) {
         mailto_links.push(this);
       }
     }
