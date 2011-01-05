@@ -19,7 +19,7 @@ function extlink_menu() {
  */
 function extlink_init() {
   $path = drupal_get_path('module', 'extlink');
-  drupal_add_js($path .'/extlink.js',array('every_page' => TRUE));
+  drupal_add_js($path .'/extlink.js', array('every_page' => TRUE));
   drupal_add_js(array('extlink' => array(
     'extTarget'     => variable_get('extlink_target', 0),
     'extClass'      => variable_get('extlink_class', 'ext'),
@@ -31,7 +31,7 @@ function extlink_init() {
     'mailtoClass'   => variable_get('extlink_mailto_class', 'mailto'))), 'setting'
   );
   if (variable_get('extlink_class', 'ext') == 'ext' || variable_get('extlink_mailto_class', 'mailto') == 'mailto') {
-    drupal_add_css($path . '/extlink.css');
+    drupal_add_css($path . '/extlink.css', array('every_page' => TRUE));
   }
 }
 
