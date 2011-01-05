@@ -88,7 +88,7 @@ function extlink_admin_settings() {
 
   $patterns = array(
     '<em>(example\.com)</em> ' . t('Matches example.com.'),
-    '<em>(example\.com)|(example.net)</em> ' . t('Multiple patterns can be strung together by using a pipe. Matches example.com OR example.net.'),
+    '<em>(example\.com)|(example\.net)</em> ' . t('Multiple patterns can be strung together by using a pipe. Matches example.com OR example.net.'),
     '<em>(links/goto/[0-9]+/[0-9]+)</em> ' . t('Matches links that go through the <a href="http://drupal.org/project/links">Links module</a> redirect.'),
   );
 
