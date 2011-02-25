@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 function extlink_menu() {
   $items = array();

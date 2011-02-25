@@ -1,4 +1,3 @@
-; $Id$
 name = External Links
 description = Adds icon next to external links on the site.
 package = User interface

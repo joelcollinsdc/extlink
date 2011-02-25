@@ -1,4 +1,3 @@
-// $Id$
 
 The External Links module is a very simple approach to adding icons to links
 to external websites or e-mail addresses. It is a purely JavaScript
