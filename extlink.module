@@ -103,13 +103,13 @@ function extlink_admin_settings() {
     '#type' => 'fieldset',
     '#title' => t('Pattern matching'),
     '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
+    '#collapsed' => FALSE,
     '#description' =>
       '<p>' . t('External links uses patterns (regular expressions) to match the "href" property of links.') . '</p>' .
       t('Here are some common patterns.') .
-      theme('item_list', $patterns) .
+      theme('item_list', array("items" => $patterns)) .
       t('Common special characters:') .
-      theme('item_list', $wildcards) .
+      theme('item_list', array("items" => $wildcards)) .
       '<p>' . t('All special characters (<em>^ $ . ? ( ) | * +</em>) must also be escaped with backslashes. Patterns are not case-sensitive. Any <a href="http://www.javascriptkit.com/javatutors/redev2.shtml">pattern supported by JavaScript</a> may be used.') . '</p>',
   );
 
