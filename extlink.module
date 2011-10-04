@@ -19,16 +19,21 @@ function extlink_menu() {
 function extlink_init() {
   $path = drupal_get_path('module', 'extlink');
   drupal_add_js($path .'/extlink.js', array('every_page' => TRUE));
-  drupal_add_js(array('extlink' => array(
+  $settings = array(
     'extTarget'     => variable_get('extlink_target', 0),
     'extClass'      => variable_get('extlink_class', 'ext'),
     'extSubdomains' => variable_get('extlink_subdomains', 1),
     'extExclude'    => variable_get('extlink_exclude', ''),
     'extInclude'    => variable_get('extlink_include', ''),
     'extAlert'      => variable_get('extlink_alert', 0),
-    'extAlertText'  => variable_get('extlink_alert_text', 'This link will take you to an external web site. We are not responsible for their content.'),
-    'mailtoClass'   => variable_get('extlink_mailto_class', 'mailto'))), 'setting'
+    'mailtoClass'   => variable_get('extlink_mailto_class', 'mailto')
   );
+  if (variable_get('extlink_alert' == '1')) {
+    $settings['extAlertText']  = variable_get('extlink_alert_text', 'This link will take you to an external web site. We are not responsible for their content.');
+  } else if (variable_get('extlink_alert') == 2) {
+    $settings['extAlertText'] = variable_get('extlink_alert_overlay_text', 'Goodbye!');
+  }
+  drupal_add_js(array('extlink' => $settings),'setting');
   if (variable_get('extlink_class', 'ext') == 'ext' || variable_get('extlink_mailto_class', 'mailto') == 'mailto') {
     drupal_add_css($path . '/extlink.css', array('every_page' => TRUE));
   }
@@ -68,21 +73,72 @@ function extlink_admin_settings() {
     '#description' => t('Should all external links be opened in a new window?'),
   );
 
-  $form['extlink_alert'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Display pop-up warnings'),
-    '#return_value' => '_blank',
-    '#default_value' => variable_get('extlink_alert', 0),
-    '#description' => t('Displays a pop-up warning when any external link is clicked.'),
+  $form['warnings'] = array(
+    '#tree' => FALSE,
+    '#type' => 'fieldset',
+    '#title' => t('Leave warning'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+    '#description' => 'Display a warning to users before leaving the site' 
   );
 
-  $form['extlink_alert_text'] = array(
+  $form['warnings']['extlink_alert'] = array(
+    '#type' => 'select',
+    '#title' => t('External link warning type'),
+    '#options' => array(
+        '0' => t('None'),
+        '1' => t('Simple alert displayed'),
+        '2' => t('Overlay'),
+      ),
+    '#default_value' => variable_get('extlink_alert', 0),
+    '#description' => t('Choose action when an external link is clicked.'),
+  );
+
+  $form['warnings']['extlink_alert_text'] = array(
     '#type' => 'textarea',
     '#rows' => 3,
     '#title' => t('Pop-up warning text'),
     '#default_value' => variable_get('extlink_alert_text', 'This link will take you to an external web site. We are not responsible for their content.'),
     '#description' => t('Text to display in the pop-up external link warning box.'),
     '#wysiwyg' => FALSE,
+    '#states' => array(
+      'visible' => array(
+          'select[name="extlink_alert"]' => array('value' => '1'),
+        ),
+      ),
+  );
+
+  $form['warnings']['extlink_alert_overlay_wait'] = array(
+    '#type' => 'select',
+    '#title' => t('time to display overlay (seconds)'),
+    '#options' => drupal_map_assoc(array('1','2','3','4','5','6','7','8','9','10')),
+    '#default_value' => variable_get('extlink_alert_overlay_wait',3),
+    '#states' => array(
+      'visible' => array(
+          'select[name="extlink_alert"]' => array('value' => '2'),
+        ),
+      ),
+  );
+
+  $form['warnings']['extlink_alert_overlay_text'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Overlay warning text'),
+    '#description' => t('Text to display in overlay.  [URL] will be replaced with the link target'),
+    '#default_value' => variable_get('extlink_alert_overlay_text',t('Thank you for visiting this site.  You are about to be redirected to: <p>[URL]</p>')),
+    '#states' => array(
+      'visible' => array(
+          'select[name="extlink_alert"]' => array('value' => '2'),
+        ),
+      ),
+  );
+
+  $form['warnings']['extlink_alert_patterns'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Ignore links matching the pattern'),
+    '#maxlength' => NULL,
+    '#default_value' => variable_get('extlink_alert_patterns', ''),
+    '#description' => t('Enter a regular expression for links that you wish to exclude from receiving an alert.  See the patterns section below for details.
+            The link will still received the other external treatments.'),
   );
 
   $patterns = array(
