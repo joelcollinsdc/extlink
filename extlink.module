@@ -28,13 +28,17 @@ function extlink_init() {
     'extAlert'      => variable_get('extlink_alert', 0),
     'mailtoClass'   => variable_get('extlink_mailto_class', 'mailto')
   );
-  if (variable_get('extlink_alert' == '1')) {
+  $alertType = variable_get('extlink_alert');
+  if ($alertType == '1') {
     $settings['extAlertText']  = variable_get('extlink_alert_text', 'This link will take you to an external web site. We are not responsible for their content.');
-  } else if (variable_get('extlink_alert') == 2) {
+  } else if ($alertType == 2) {
     $settings['extAlertText'] = variable_get('extlink_alert_overlay_text', 'Goodbye!');
+    $settings['extAlertTimeout'] = variable_get('extlink_alert_overlay_wait','3');
+    $settings['extAlertPatterns'] = variable_get('extlink_alert_patterns');
+    drupal_add_js($path .'/jquery.colorbox.min.js');
   }
   drupal_add_js(array('extlink' => $settings),'setting');
-  if (variable_get('extlink_class', 'ext') == 'ext' || variable_get('extlink_mailto_class', 'mailto') == 'mailto') {
+  if (variable_get('extlink_class', 'ext') == 'ext' || variable_get('extlink_mailto_class', 'mailto') == 'mailto' || $alertType == '2') {
     drupal_add_css($path . '/extlink.css', array('every_page' => TRUE));
   }
 }
@@ -111,7 +115,8 @@ function extlink_admin_settings() {
   $form['warnings']['extlink_alert_overlay_wait'] = array(
     '#type' => 'select',
     '#title' => t('time to display overlay (seconds)'),
-    '#options' => drupal_map_assoc(array('1','2','3','4','5','6','7','8','9','10')),
+    '#description' => t('0 means the overlay will not close automatically.'),
+    '#options' => drupal_map_assoc(array('0','1','2','3','4','5','6','7','8','9','10')),
     '#default_value' => variable_get('extlink_alert_overlay_wait',3),
     '#states' => array(
       'visible' => array(

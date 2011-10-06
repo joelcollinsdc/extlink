@@ -14,3 +14,30 @@ span.mailto {
     padding: 0;
   }
 }
+
+#extlink-overlay {
+    background: none repeat scroll 0 0 #FFFFFF;
+    clear: both;
+    height: 100%;
+}
+#extlink-overlay #extlink-overlay-content {
+    margin: 0;
+    padding: 20px 25px 35px;
+    width: 450px;
+}
+#extlink-access-bg {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #E6E6E6 -moz-use-text-color;
+    border-style: solid none;
+    border-width: 1px medium;
+    margin: 20px 10px 20px 0;
+}
+#extlink-access {
+    background: none repeat scroll 0 0 #F8F9FA;
+    margin: 1px 0;
+    padding: 20px;
+}

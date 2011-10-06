@@ -85,11 +85,33 @@ function extlinkAttach(context) {
     $(external_links).attr('target', Drupal.settings.extlink.extTarget);
   }
 
-  if (Drupal.settings.extlink.extAlert) {
+  if (Drupal.settings.extlink.extAlert == 1) {
     // Add pop-up click-through dialog.
     $(external_links).click(function(e) {
      return confirm(Drupal.settings.extlink.extAlertText);
     });
+  } else if (Drupal.settings.extlink.extAlert == 2) {
+//filter out additional regex
+    var filtered = $(external_links).filter(function() {
+      return !$(this).attr('href').toLowerCase().match(Drupal.settings.extlink.extAlertPatterns);
+    });
+    filtered.click(function(e) {
+      var clicked = $(this), timer, overlayText;
+      e.preventDefault();
+      overlayText = Drupal.settings.extlink.extAlertText.replace(/\[URL\]/g,clicked.attr('href')).replace(/\[TITLE\]/g,clicked.attr('title'));
+      $.colorbox({html:overlayText});
+      if (Drupal.settings.extlink.extAlertTimeout > 0) {
+        $(document).bind('cbox_complete',function() {
+          timer = setTimeout(function () {
+            $.colorbox.close(); 
+            window.location.href=clicked.attr('href');
+          }, Drupal.settings.extlink.extAlertTimeout * 1000);
+        });
+        $(document).bind('cbox_cleanup', function () {
+          clearTimeout(timer);
+        });
+      }
+   });
   }
 
   // Work around for Internet Explorer box model problems.
